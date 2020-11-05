@@ -78,11 +78,12 @@
   - internal
   - public
 
-- name: turn on haproxy_connect_any
-  seboolean:
-    name: haproxy_connect_any
-    state: yes
-    persistent: yes
+#- name: turn on haproxy_connect_any
+# seboolean:
+#   name: haproxy_connect_any
+#   state: yes
+#   persistent: yes
+
 
 - name: restart haproxy
   service:
