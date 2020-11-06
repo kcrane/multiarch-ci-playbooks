@@ -37,7 +37,7 @@ dhcp_server_ip_address: 10.0.158.57
 # based on their own environment.
 # example:
 # "rd.znet=qeth,0.0.0600,0.0.0601,0.0.0602,layer2=1,portno=0"
-zvm_rd_znet: ""
+zvm_rd_znet: "rd.znet=qeth,0.0.0600,0.0.0601,0.0.0602,layer2=1,portno=0 zfcp.allow_lun_scan=0"
 # User must supply zvm rd.dasd device id kernel arg.
 # This is the device to install coreos to.
 # WARNING - using the wrong device id could result in loss of data.  The
@@ -45,7 +45,7 @@ zvm_rd_znet: ""
 # environment.
 # example:
 # "rd.dasd=0.0.0120"
-zvm_rd_dasd: ""
+zvm_rd_dasd: "rd.dasd=0.0.0120,0.0.0130-0.0.013F"
 
 coreos_kargs_net:
   zvm: "ip={{ cluster_nodes[coreos_role][item].ip }}::{{ subnet_gateway }}:{{ subnet_netmask }}:::none nameserver={{ bastion_private_ip_address }} {{ zvm_rd_znet }}"
@@ -66,34 +66,89 @@ cluster_nodes:
   bootstrap:
     bootstrap-0:
       mac: '52:54:00:d0:f7:03'
-      ip: '192.168.0.2'
+      ip: '10.0.158.74'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: bootstrap.ign
   masters:
     master-0:
       mac: '52:54:00:da:70:41'
-      ip: '192.168.0.3'
+      ip: '10.0.158.58'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: master.ign
     master-1:
       mac: '52:54:00:a2:93:d8'
-      ip: '192.168.0.4'
+      ip: '10.0.158.59'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: master.ign
     master-2:
       mac: '52:54:00:d9:5b:d8'
-      ip: '192.168.0.5'
+      ip: '10.0.158.60'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: master.ign
   workers:
-    worker-0:
+    infra-0:
       mac: '52:54:00:70:8b:74'
-      ip: '192.168.0.6'
+      ip: '10.0.158.71'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    infra-1:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.72'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    infra-2:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.73'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-0:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.61'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: worker.ign
     worker-1:
       mac: '52:54:00:70:8b:75'
-      ip: '192.168.0.7'
+      ip: '10.0.158.62'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-2:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.63'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-3:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.64'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-4:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.65'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-5:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.66'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-6:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.67'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-7:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.68'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-8:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.69'
+      disk: "{{ dev_disk[install_mode] }}"
+      ign_profile: worker.ign
+    worker-9:
+      mac: '52:54:00:70:8b:75'
+      ip: '10.0.158.70'
       disk: "{{ dev_disk[install_mode] }}"
       ign_profile: worker.ign
 
